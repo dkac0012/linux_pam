@@ -29,8 +29,22 @@ sudo vi /etc/netplan/00-installer-config.yaml # 편집 명령어
 sudo netplan apply # 설정 적용 명령어
 ```
 
-![image](https://github.com/user-attachments/assets/dfe963f5-79f9-4150-92c8-ec58b321b5fe)
-
+```bash
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp0s3:
+      addresses:
+        - 10.0.2.21/24  # 변경된 고정 IP 주소
+      routes:
+        - to: default
+          via: 10.0.2.1  # 게이트웨이
+      nameservers:
+        addresses:
+          - 8.8.8.8
+      dhcp4: false
+```
 
 
 **설정 전**
